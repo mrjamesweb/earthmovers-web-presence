@@ -1,5 +1,4 @@
-
-import { Home, Building, Wrench, Paintbrush, Hammer, Truck, Zap, Settings, CheckCircle, Clock, Shield } from 'lucide-react';
+import { Home, Building, Wrench, Paintbrush, Hammer, Truck, Zap, Settings, CheckCircle, Clock, Shield, Users } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
