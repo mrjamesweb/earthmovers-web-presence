@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
@@ -15,77 +15,88 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
-      {/* Top bar */}
-      <div className="bg-slate-800 text-white py-2">
-        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <Phone className="h-4 w-4" />
-              <span>(555) 123-4567</span>
+    <header className="bg-white shadow-2xl sticky top-0 z-50 backdrop-blur-sm bg-white/95">
+      {/* Enhanced top bar with gradient */}
+      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-orange-900 text-white py-3">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-2 md:space-y-0">
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+              <div className="flex items-center space-x-2 group">
+                <Phone className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
+                <span className="hover:text-orange-300 transition-colors">(555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-2 group">
+                <Mail className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
+                <span className="hover:text-orange-300 transition-colors">info@buildtech.com</span>
+              </div>
+              <div className="flex items-center space-x-2 group">
+                <MapPin className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
+                <span className="hover:text-orange-300 transition-colors">Building City, BC</span>
+              </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Mail className="h-4 w-4" />
-              <span>info@buildtech.com</span>
+            <div className="hidden lg:block">
+              <span className="bg-orange-500/20 px-3 py-1 rounded-full text-orange-200 animate-pulse">
+                🏆 Licensed & Insured | 24/7 Emergency Service
+              </span>
             </div>
-          </div>
-          <div className="hidden md:block">
-            <span>Licensed & Insured | 24/7 Emergency Service</span>
           </div>
         </div>
       </div>
 
-      {/* Main navigation */}
-      <nav className="container mx-auto px-4 py-4">
+      {/* Enhanced main navigation */}
+      <nav className="container mx-auto px-4 py-6">
         <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <div className="text-2xl font-bold text-slate-800">
-              Build<span className="text-orange-500">Tech</span>
+          <div className="flex items-center group">
+            <div className="text-3xl font-bold text-slate-800 transition-all duration-300 group-hover:scale-105">
+              Build<span className="text-transparent bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text">Tech</span>
             </div>
           </div>
 
-          {/* Desktop navigation */}
+          {/* Enhanced desktop navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-slate-700 hover:text-orange-500 font-medium transition-colors duration-200"
+                className="relative text-slate-700 hover:text-orange-500 font-medium transition-all duration-300 group py-2"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {item.name}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+            <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               Get Quote
             </Button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Enhanced mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-slate-700 hover:text-orange-500"
+              className="text-slate-700 hover:text-orange-500 transition-all duration-300 hover:scale-110"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile navigation */}
+        {/* Enhanced mobile navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+          <div className="md:hidden mt-6 pb-6 animate-fade-in">
+            <div className="flex flex-col space-y-6 bg-slate-50 rounded-lg p-6">
+              {navItems.map((item, index) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-slate-700 hover:text-orange-500 font-medium transition-colors duration-200"
+                  className="text-slate-700 hover:text-orange-500 font-medium transition-all duration-300 hover:translate-x-2"
                   onClick={() => setIsMenuOpen(false)}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {item.name}
                 </a>
               ))}
-              <Button className="bg-orange-500 hover:bg-orange-600 text-white w-fit">
+              <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white w-fit shadow-lg hover:shadow-xl transition-all duration-300">
                 Get Quote
               </Button>
             </div>
